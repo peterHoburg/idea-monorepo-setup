@@ -2,7 +2,7 @@
 Test fixtures and configuration for idea-monorepo-setup tests.
 """
 
-import os
+from pathlib import Path
 from typing import Any
 
 import pytest
@@ -19,8 +19,8 @@ def test_config() -> Config:
         Test configuration instance
     """
     config = Config()
-    config.compose_file = os.path.join("tests", "fixtures", "docker-compose.yml")
-    config.idea_dir = os.path.join("tests", "fixtures", "idea")
+    config.compose_file = str(Path("tests") / "fixtures" / "docker-compose.yml")
+    config.idea_dir = str(Path("tests") / "fixtures" / "idea")
     config.log_level = "DEBUG"
     return config
 

@@ -4,7 +4,7 @@ This module provides functionality to validate project structure and prerequisit
 """
 
 # Placeholder for future implementation
-import os
+from pathlib import Path
 
 from idea_monorepo_setup.utils import log
 
@@ -22,7 +22,7 @@ def validate_project_structure(project_dir: str) -> bool:
 
     """
     # Placeholder implementation
-    logger.info(f"Validating project structure in {project_dir}")
+    logger.info("Validating project structure in %s", project_dir)
     return True
 
 
@@ -37,9 +37,10 @@ def validate_docker_compose(compose_file: str) -> tuple[bool, dict | None]:
 
     """
     # Placeholder implementation
-    if not os.path.isfile(compose_file):
-        logger.error(f"Docker Compose file not found: {compose_file}")
-        return False, {"error": f"File not found: {compose_file}"}
+    if not Path(compose_file).is_file():
+        logger.error("Docker Compose file not found: %s", compose_file)
+        error_message = "File not found: " + compose_file
+        return False, {"error": error_message}
 
     # In a real implementation, we would parse and validate the file
     return True, None
@@ -56,14 +57,9 @@ def validate_python_services(services: dict[str, dict]) -> list[str]:
 
     """
     # Placeholder implementation
-    python_services = []
-
-    for service_name, service_info in services.items():
-        # In a real implementation, we would check if the service uses Python
-        # For now, assume all services are Python services
-        python_services.append(service_name)
-
-    return python_services
+    # In a real implementation, we would check if the service uses Python
+    # For now, assume all services are Python services
+    return list(services.keys())
 
 
 def validate_prerequisites() -> bool:

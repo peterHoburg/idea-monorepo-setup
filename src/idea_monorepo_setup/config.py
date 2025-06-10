@@ -5,14 +5,14 @@ This module manages configuration options and settings for the idea-monorepo-set
 
 # Placeholder for future implementation
 import argparse
-import os
+from pathlib import Path
 from typing import Any
 
 
 class Config:
     """Configuration class for idea-monorepo-setup."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize the configuration with default values."""
         self.compose_file = "docker-compose.yml"
         self.idea_dir = ".idea"
@@ -52,14 +52,14 @@ class Config:
 
         """
         # Check if compose file exists
-        if not os.path.isfile(self.compose_file):
+        if not Path(self.compose_file).is_file():
             return False
 
         # Create idea directory if it doesn't exist
-        if not os.path.isdir(self.idea_dir):
+        if not Path(self.idea_dir).is_dir():
             try:
-                os.makedirs(self.idea_dir, exist_ok=True)
-            except Exception:
+                Path(self.idea_dir).mkdir(parents=True, exist_ok=True)
+            except OSError:
                 return False
 
         return True

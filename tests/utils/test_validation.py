@@ -47,6 +47,5 @@ def test_validate_python_services(sample_services):
 
 def test_validate_prerequisites():
     """Test validating prerequisites."""
-    with patch("idea_monorepo_setup.utils.validation.logger") as mock_logger:
-        result = validation.validate_prerequisites()
-        assert result is True
+    result = validation.validate_prerequisites()
+    assert result is True

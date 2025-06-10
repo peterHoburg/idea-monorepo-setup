@@ -18,7 +18,8 @@ def setup_logging(log_level: str = "INFO", log_file: str | None = None) -> None:
     # Convert string log level to logging constant
     numeric_level = getattr(logging, log_level.upper(), None)
     if not isinstance(numeric_level, int):
-        raise ValueError(f"Invalid log level: {log_level}")
+        error_message = "Invalid log level: " + log_level
+        raise TypeError(error_message)
 
     # Configure root logger
     logging.root.setLevel(numeric_level)
