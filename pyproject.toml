@@ -1,0 +1,17 @@
+[project]
+name = "idea-monorepo-setup"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Peter Hoburg", email = "peterHoburg@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+idea-monorepo-setup = "idea_monorepo_setup:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
