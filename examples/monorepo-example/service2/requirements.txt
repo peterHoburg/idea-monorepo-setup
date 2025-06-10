@@ -1,5 +1,5 @@
 # Service2 dependencies
-flask==2.0.1
+flask==2.2.5
 requests==2.26.0
 pandas==1.3.3
 numpy==1.21.2
