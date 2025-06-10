@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  service1:
+    build:
+      context: ./service1
+      dockerfile: Dockerfile
+    volumes:
+      - ./service1:/app
+    ports:
+      - "8001:8000"
+    environment:
+      - PYTHONPATH=/app
+      - DEBUG=True
+
+  service2:
+    build:
+      context: ./service2
+      dockerfile: Dockerfile
+    volumes:
+      - ./service2:/app
+    ports:
+      - "8002:8000"
+    environment:
+      - PYTHONPATH=/app
+      - DEBUG=True
+    depends_on:
+      - service1
+
+  non-python-service:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d

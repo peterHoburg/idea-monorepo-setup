@@ -5,10 +5,9 @@ This module provides functionality to set up logging for the application.
 
 import logging
 import sys
-from typing import Optional
 
 
-def setup_logging(log_level: str = "INFO", log_file: Optional[str] = None) -> None:
+def setup_logging(log_level: str = "INFO", log_file: str | None = None) -> None:
     """Set up logging configuration for the application.
 
     Args:
@@ -29,7 +28,7 @@ def setup_logging(log_level: str = "INFO", log_file: Optional[str] = None) -> No
         logging.root.removeHandler(handler)
 
     # Create formatter
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
     # Create console handler
     console_handler = logging.StreamHandler(sys.stdout)

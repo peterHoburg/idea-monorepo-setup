@@ -2,6 +2,16 @@
 
 This document provides essential information for developers working on the idea-monorepo-setup project.
 
+## Development workflow
+The general development workflow.
+
+1. Get an incomplete ticket from TICKETS.md
+2. Run `make test` and `make lint` to make sure the project is in a good state to start. 
+3. Write tests (TDD)
+4. Write code
+5. `make test` and `make lint` must pass!
+6. Mark the ticket as complete. 
+
 ## Build/Configuration Instructions
 
 ### Prerequisites
