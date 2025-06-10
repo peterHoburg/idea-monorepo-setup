@@ -4,9 +4,11 @@ This module provides functionality to set up logging for the application.
 """
 
 import logging
+import sys
+from typing import Optional
 
 
-def setup_logging(log_level: str = "INFO", log_file: str | None = None) -> None:
+def setup_logging(log_level: str = "INFO", log_file: Optional[str] = None) -> None:
     """Set up logging configuration for the application.
 
     Args:
@@ -14,8 +16,31 @@ def setup_logging(log_level: str = "INFO", log_file: str | None = None) -> None:
         log_file: Path to log file (if None, logs to console only)
 
     """
-    # This is a placeholder implementation
-    # Actual implementation will be done following TDD approach
+    # Convert string log level to logging constant
+    numeric_level = getattr(logging, log_level.upper(), None)
+    if not isinstance(numeric_level, int):
+        raise ValueError(f"Invalid log level: {log_level}")
+
+    # Configure root logger
+    logging.root.setLevel(numeric_level)
+
+    # Remove existing handlers
+    for handler in logging.root.handlers[:]:
+        logging.root.removeHandler(handler)
+
+    # Create formatter
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    # Create console handler
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setFormatter(formatter)
+    logging.root.addHandler(console_handler)
+
+    # Create file handler if log_file is specified
+    if log_file:
+        file_handler = logging.FileHandler(log_file)
+        file_handler.setFormatter(formatter)
+        logging.root.addHandler(file_handler)
 
 
 def get_logger(name: str) -> logging.Logger:
@@ -28,6 +53,4 @@ def get_logger(name: str) -> logging.Logger:
         Logger instance
 
     """
-    # This is a placeholder implementation
-    # Actual implementation will be done following TDD approach
     return logging.getLogger(name)

@@ -7,3 +7,6 @@ lint:
 
 test:
 	uv run pytest -n auto
+
+build:
+	uv build
